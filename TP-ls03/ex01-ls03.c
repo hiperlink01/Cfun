@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int classify_letter(char letter){
+int classify_char_consonant(char letter){
 
   switch (letter){
   
@@ -27,7 +27,8 @@ int main(){
   printf("Insert ONE character: ");
   scanf("%c", &letter);
   
-  if (classify_letter(letter)==1){  printf("consonant\n"); }
+  if (classify_char_consonant(letter)==1){  printf("consonant\n"); }
   else { printf("not a consonant\n"); }
 
+  return 0;
 }
