@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int classify_char_consonant(char letter){
+int classify_char_scvogal(char letter){
 
   switch (letter){
   
@@ -20,7 +20,7 @@ int main(){
   printf("Insert ONE character: ");
   scanf("%c", &letter);
   
-  if (classify_char_consonant(letter)==1){  printf("small caps vogal\n"); }
+  if (classify_char_scvogal(letter)==1){  printf("small caps vogal\n"); }
   else { printf("not small caps vogal\n"); }
 
   return 0;
