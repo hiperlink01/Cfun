@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int integer_pow(int base, int power){
+int pow_of_int(int base, int power){
 
     int result = 1;
 
@@ -10,13 +10,13 @@ int integer_pow(int base, int power){
 
 }
 
-int integer_log(int base, int logarithmand){
+int log_of_int(int base, int logarithmand){
 
     int result = 1;
 
-    for (int i=0; integer_pow(base, i) <= logarithmand; i++){ 
+    for (int i=0; log_of_int(base, i) <= logarithmand; i++){ 
         
-        if (logarithmand == integer_pow(base, i)) { result = i; }
+        if (logarithmand == log_of_int(base, i)) { result = i; }
     
     }
 
@@ -34,6 +34,6 @@ int main(){
     printf("Insira o logaritmando: ");
     scanf("%d", &logarithmand);
 
-    printf("O logaritmo é: %d", integer_log(base, logarithmand));
+    printf("O logaritmo é: %d", log_of_int(base, logarithmand));
 
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int regular_check(int number){
+int check_regular(int number){
 
     if (number<=1){ return 0; } //negativos, nulo e 1 não são primos
 
@@ -29,7 +29,7 @@ int main(){
     printf("Insira um número para descobrir se é regular: ");
     scanf("%d", &number);
 
-    if (regular_check(number) == 1) { printf("\nÉ regular.\n\n"); }
+    if (check_regular(number) == 1) { printf("\nÉ regular.\n\n"); }
     else { printf("\nNão é regular.\n\n"); }
 
 }

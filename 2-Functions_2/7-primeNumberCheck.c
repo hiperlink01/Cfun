@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int prime_check(int number){
+int check_prime(int number){
 
     if (number<=1){ return 0; } //negativos, nulo e 1 não são primos
 
@@ -25,7 +25,7 @@ int main(){
     printf("Insira um número inteiro para verificar se é primo: ");
     scanf("%d", &number);
 
-    if ( prime_check(number)==1 ){ printf("É primo.\n"); }
-    if ( prime_check(number)==0 ){ printf("Não é primo.\n"); }
+    if ( check_prime(number)==1 ){ printf("É primo.\n"); }
+    if ( check_prime(number)==0 ){ printf("Não é primo.\n"); }
 
 }
