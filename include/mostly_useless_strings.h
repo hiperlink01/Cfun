@@ -11,6 +11,6 @@ char* to_lower_case(char original_str[], int len_original_str);
 
 char* to_upper_case(char original_str[], int len_original_str);
 
-void caixa_com_texto_centralizado(char S[], int N, char C);
+int string_lenght(char string[]);
 
 #endif
