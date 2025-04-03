@@ -17,4 +17,6 @@ char* strconcat(char first_str[], char second_str[]);
 
 long long int string_to_int (char string[]);
 
+char* remove_blank(char* original_string);
+
 #endif
