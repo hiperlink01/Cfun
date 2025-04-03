@@ -19,4 +19,6 @@ long long int string_to_int (char string[]);
 
 char* remove_blank(char* original_string);
 
+int lexicompare(char str1[], char str2[]);
+
 #endif
