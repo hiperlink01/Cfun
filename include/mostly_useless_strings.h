@@ -13,4 +13,8 @@ char* to_upper_case(char original_str[], int len_original_str);
 
 int string_lenght(char string[]);
 
+char* strconcat(char first_str[], char second_str[]);
+
+long long int string_to_int (char string[]);
+
 #endif

@@ -109,3 +109,55 @@ int string_lenght(char string[]){
     return qtt;
 
 }
+
+char* strconcat(char first_str[], char second_str[]){
+
+    int concat_len = strlen(first_str) + strlen(second_str);
+
+    char* concat_str = (char*) malloc(sizeof(char)*concat_len+1);
+
+    for (int i=0; i<concat_len; i++){
+
+        if (i < strlen(first_str)){
+            concat_str[i] = first_str[i];
+        }
+        if (i >= strlen(first_str)){
+            concat_str[i] = second_str[i-strlen(first_str)];
+        }
+    }    
+
+    concat_str[concat_len] = '\0';
+
+    return concat_str;
+}
+
+long long int string_to_int (char string[]){
+
+    for (int i = 0; i < strlen(string); i++){
+
+        if( string[i] < '0' || string[i] > '9'){
+
+            printf("BAD PARAMETERS\n\n");
+            return 0;
+
+        }
+
+    }
+
+    int digits_qtt = strlen(string);
+
+    long long int digits_generator = pow_of_int(10, digits_qtt-1);
+    
+    long long int result = 0;
+
+    for (int i = 0; i < digits_qtt; i++){
+
+        result = result + digits_generator * cast_to_int(string[i]);
+
+        digits_generator = digits_generator / 10;
+
+    }
+
+    return result;
+
+}
