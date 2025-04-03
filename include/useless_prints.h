@@ -11,4 +11,6 @@ void desenha_retangulo_preenchido(int linhas, int colunas, char contorno, char p
 
 void print_month(int month);
 
+void caixa_com_texto_centralizado(char S[], int N, char C);
+
 #endif
