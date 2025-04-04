@@ -7,7 +7,7 @@ int* filtrar_intervalo(int V[], int N, int A, int B, int *return_N_result){
 
     for (int i = 0; i < N; i++){
 
-        if (V[i]>=A && V[i]<=B){ *return_N_result++; };
+        if (V[i]>=A && V[i]<=B){ *return_N_result = *return_N_result + 1 ; };
 
     }
 
@@ -19,10 +19,10 @@ int* filtrar_intervalo(int V[], int N, int A, int B, int *return_N_result){
 
         if (V[i]>=A && V[i]<=B){ 
             
-            V_result[cont];
+            V_result[cont] = V[i];
             cont++;
             
-        };
+        }
 
     }
 
@@ -37,15 +37,20 @@ int main(){
 
     V_result = filtrar_intervalo(V, N, A, B, &N_result);
 
-    printf("{ ");
+    printf("{");
 
     for(int i=0; i<N_result; i++){
 
-        printf("%d, ", V_result[i]);
+        if (i != N_result-1){
+        
+            printf("% d,", V_result[i]);
+        
+        }
 
+        else { printf(" %d ", V_result[i]); }
     }
 
-    printf(" }");
+    printf("}");
 
     return 0;
 }
