@@ -41,13 +41,8 @@ void input_arr(int* arr, int size){
                 if (j == i) { printf("%d]\n\n", arr[j]); }
                 
             }
-
         }
-
     }
-    
-    
-
 }
 
 void print_arr(int* arr, int size){
@@ -61,7 +56,6 @@ void print_arr(int* arr, int size){
         if (i == size-1) { printf("%d]\n\n", arr[i]); }
         
     }
-
 }
 
 int* resize_arr(int* arr, int old_T, int new_T){
@@ -76,7 +70,6 @@ int* resize_arr(int* arr, int old_T, int new_T){
             else { new_arr[i] = 0; }
 
         }
- 
     }
 
     else /*if (old_T == new_T) or (old_T > new_T)*/ {
@@ -88,7 +81,6 @@ int* resize_arr(int* arr, int old_T, int new_T){
     free_arr(arr);
 
     return new_arr;
-
 
 }
 
