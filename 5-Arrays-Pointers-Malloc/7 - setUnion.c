@@ -1,6 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int * alloc_arr(int size){
+
+    int* arr = (int*) malloc(sizeof(int) * size);
+
+    for (int i=0; i<size; i++){
+
+        arr[i] = 0;
+
+    }
+
+    return arr;
+
+}
+
 int* Create_Aux_Arr(int* original_arr, int arr_size){
 
     int* aux_arr = (int*)malloc(sizeof(int)*arr_size);
@@ -13,7 +27,48 @@ int* Create_Aux_Arr(int* original_arr, int arr_size){
 
 }
 
+void input_arr(int* arr, int size){
+
+    for (int i = 0; i < size; i++) {
+
+        printf("%d: ", i);
+        scanf("%d", &arr[i]);
+
+        if (i==0) { printf("[%d]\n\n", arr[i]); }
+        
+        else{
+
+            for (int j = 0; j <= i; j++) {
+
+                if (j == 0) { printf("[%d, ", arr[j]); }
+
+                if (j>0 && j<i){ printf("%d, ", arr[j]); }
+
+                if (j == i) { printf("%d]\n\n", arr[j]); }
+                
+            }
+        }
+    }
+}
+
+void print_arr(int* arr, int size){
+
+    for (int i = 0; i < size; i++) {
+
+        if (i == 0) { printf("\nV: [%d, ", arr[i]); }
+
+        if (i>0 && i<size-1){ printf("%d, ", arr[i]); }
+
+        if (i == size-1) { printf("%d]\n\n", arr[i]); }
+        
+    }
+}
+
 //function from ./"9 - trimSet.c"
+/*
+Returns a pointer to an array of unique numbers (representing a set)
+Its size is held by the integer referenced by parameter "trimmed_set_size"
+*/
 int* Trim_Set(int* set, int set_size, int *trimmed_set_size){
 
     /*
@@ -24,7 +79,7 @@ int* Trim_Set(int* set, int set_size, int *trimmed_set_size){
     int* aux_set = Create_Aux_Arr(set, set_size);
 
     //trimmed_set_size is initially the same as original, for the case no trimming is necessary
-    int *trimmed_set_size = set_size;
+    *trimmed_set_size = set_size;
 
     //its size is 1 less than set_size because all elements being equal is the most extreme case
     int indexes_of_repeated_elements[set_size-1];
@@ -84,47 +139,50 @@ int* Trim_Set(int* set, int set_size, int *trimmed_set_size){
 
 }
 
-int* Generate_Intersection(int* set_1, int set_1_size, int* set_2, int set_2_size, int* intersection_size){
+int* Generate_Union(int* set_1, int set_1_size, int* set_2, int set_2_size, int* union_size){
+    
+    int untrimmed_union_size = set_1_size + set_2_size;
 
-    //pointers to size of trimmed sets
-    int* set_1_trimmed_size;
-    int* set_2_trimmed_size;
+    int* untrimmed_union = (int*)malloc(sizeof(int)*untrimmed_union_size);
 
-    //trimming sets to prevent duplicates
-    int* set_1_trimmed = Trim_Set(set_1, set_1_size, set_1_trimmed_size);
-    int* set_2_trimmed = Trim_Set(set_2, set_2_size, set_2_trimmed_size);
+    for (int i = 0; i < set_1_size; i++){
 
-    //check both sets: if equal elements are found, increase intersection size
-    for (int i = 0; i < *set_1_trimmed_size; i++){
-        for(int j = 0; j < *set_2_trimmed_size; j++){
+        untrimmed_union[i] = set_1[i];
 
-            if (set_1_trimmed[i] == set_2_trimmed[j]){ (*intersection_size)++; }
-            
-        }
     }
 
-    //allocate with resulting size
-    int* intersection = (int*)malloc(sizeof(int)*(*intersection_size));
+    for (int i = 0; i < set_2_size; i++){
 
-    //lock on positions of intersection array
-    for (int k = 0; k<intersection_size; k++){
-        //search elements by checking both sets, the same way as before
-        for (int i = 0; i < *set_1_trimmed_size; i++){
-            for(int j = 0; j < *set_2_trimmed_size; j++){
-            
-                //insert equal elements into intersection
-                if (set_1_trimmed[i] == set_2_trimmed[j]){
+        untrimmed_union[i + set_1_size] = set_2[i];
 
-                    intersection[k] = set_1_trimmed[i];
-
-                }
-            }
-        }
     }
 
-    free(set_1_trimmed);
-    free(set_2_trimmed);
-    return intersection;
+    int* trimmed_union = Trim_Set(untrimmed_union, untrimmed_union_size, union_size);
+
+    free(untrimmed_union);
+    return trimmed_union;
+
 }
 
-int main(){}
+int main(){
+
+    int* set_1;
+    int set_1_size;
+
+    int* set_2;
+    int set_2_size;
+
+    int union_size;
+
+    scanf("%d", &set_1_size);
+    set_1 = alloc_arr(set_1_size);
+    input_arr(set_1, set_1_size);
+
+    scanf("%d", &set_2_size);
+    set_2 = alloc_arr(set_2_size);
+    input_arr(set_2, set_2_size);
+
+    int* set_union = Generate_Union(set_1, set_1_size, set_2, set_2_size, &union_size);
+
+    print_arr(set_union, union_size);
+}
